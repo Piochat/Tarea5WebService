@@ -1,0 +1,17 @@
+{
+    "name": "koke/ws-tarea5",
+    "description": "WebService para la tarea, hecho con PDO y NuSoap",
+    "type": "project",
+    "require": {
+        "econea/nusoap": "^0.9.6",
+        "faapz/pdo": "^1.11",
+        "zurb/foundation": "^6.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Koke",
+            "email": "kokegudiel2@gmail.com"
+        }
+    ]
+}
