@@ -96,6 +96,18 @@ $server->register(
     'Inserta la información'
 );
 
+// Registrandoo funcion insetarDatos
+$server->register(
+    'actualizar',
+    array('serie_anime'=>'tns:serie_anime', "id" => "xsd:int"),
+    array('return'=>'xsd:string'),
+    'urn:AnimeXMLwsdl',
+    'urn:AnimeXMLwsdl#actualizar',
+    'rpc',
+    'encoded',
+    'Actualiza la información'
+);
+
 if(!isset($HTTP_RAW_POST_DATA)){
     $HTTP_RAW_POST_DATA=file_get_contents('php://input');
 }
