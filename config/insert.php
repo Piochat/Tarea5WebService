@@ -1,11 +1,10 @@
 <?php
 require_once('conexion.php');
 
-function queryInsert($model)
+function queryInsert($info)
 {
     $pdo = new Conexion();
     $insetar = $pdo->openConn();
-    $m = $model;
 
     $insertStatement = $insetar->insert()
                            ->into("anime")
