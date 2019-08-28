@@ -2,6 +2,8 @@
 require_once('..\vendor\autoload.php');
 require_once('..\config\select.php');
 require_once('..\config\insert.php');
+require_once('..\config\update.php');
+require_once('..\config\delete.php');
 
 // Instancia de Soapserver
 $server=new soap_server();
@@ -36,11 +38,22 @@ function insetarDatos($anime)
 // Funcion, realiza un update en la tabla
 function actualizar($anime, $id)
 {
-    $data = queryUpdate($anime, $id);
-    if ($data) {
-        return  "Update exitoso";
-    } else {
-        return "No se Actualizó";
+    try {
+        $data = queryUpdate($anime, $id);
+        return $data;
+    } catch (\Throwable $th) {
+        return "$th";
+    }
+}
+
+// Funcion, realiza un delete en la tabla
+function borrar($id)
+{
+    try {
+        $data = queryDelete($id);
+        return $data;
+    } catch (\Throwable $th) {
+        return "$th";
     }
 }
 
@@ -52,7 +65,7 @@ $server->wsdl->addComplexType('serie_anime',
                                 '',
 array(
     'name' => array('name'=>'name', 'type'=>'xsd:string'),
-    'capas' => array('caps'=>'caps', 'type'=>'xsd:string'),
+    'caps' => array('caps'=>'caps', 'type'=>'xsd:string'),
     'source' => array('source'=>'source', 'type'=>'xsd:string'),
     'type' => array('type'=>'type', 'type'=>'xsd:string'),
     'author' => array('author'=>'author', 'type'=>'xsd:string'),
@@ -96,13 +109,25 @@ $server->register(
     'Inserta la información'
 );
 
-// Registrandoo funcion insetarDatos
+// Registrandoo funcion actualizar
 $server->register(
     'actualizar',
-    array('serie_anime'=>'tns:serie_anime', "id" => "xsd:int"),
+    array('serie_anime'=>'tns:serie_anime', 'id'=>'xsd:int'),
     array('return'=>'xsd:string'),
     'urn:AnimeXMLwsdl',
     'urn:AnimeXMLwsdl#actualizar',
+    'rpc',
+    'encoded',
+    'Actualiza la información'
+);
+
+// Registrandoo funcion delete
+$server->register(
+    'borrar',
+    array('id'=>'xsd:int'),
+    array('return'=>'xsd:string'),
+    'urn:AnimeXMLwsdl',
+    'urn:AnimeXMLwsdl#borrar',
     'rpc',
     'encoded',
     'Actualiza la información'

@@ -24,5 +24,5 @@ function queryUpdate($info, $id)
 
 // $info = ["name" => "Amaama to Inazuma", "caps" => "12", "source" => "MANGA", 
 // "type" => "SERIE", "author" => "Gido Amagakure", "studio" => "TMS Entertainment"];
-// $db = queryUpdate($info, 9);
+// $db = queryUpdate($info, "9");
 // var_dump($db);
