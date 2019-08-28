@@ -1,2 +1,2 @@
 <?php
-header('Location: main\index.php');
+header('Location: main\service.php');
